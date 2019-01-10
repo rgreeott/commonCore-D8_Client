@@ -1,0 +1,13 @@
+name: 'S3 File System CORS Upload'
+description: 'Provides a widget that allows users to upload files directly to S3 from their browser.'
+# core: 8.x
+dependencies:
+  - s3fs:s3fs
+  - token:token
+type: module
+
+# Information added by Drupal.org packaging script on 2018-08-29
+version: '8.x-1.0-alpha7'
+core: '8.x'
+project: 's3fs_cors'
+datestamp: 1535586184
