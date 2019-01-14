@@ -1,8 +1,0 @@
-langcode: en
-status: true
-dependencies: {  }
-name: 'Portfolio Tags'
-vid: portfolio_tags
-description: ''
-hierarchy: 0
-weight: 0
