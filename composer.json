@@ -9,7 +9,8 @@
         "aws/aws-sdk-php": "^3.84",
         "aws/aws-php-sns-message-validator": "^1.5",
         "behat/mink-zombie-driver": "^1.4",
-        "dmore/chrome-mink-driver": "^2.6"
+        "dmore/chrome-mink-driver": "^2.6",
+        "drupal/flysystem_s3": "1.x"
     },
     "replace": {
         "drupal/core": "^8.6"
