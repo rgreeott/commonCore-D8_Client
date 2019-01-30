@@ -1,0 +1,7 @@
+type: module
+name: Drupella File Manager
+description: Ajax based file manager with drag drop user interface.
+package: Media
+configure: dfm.admin
+core: 8.x
+version: 8.x-1.13

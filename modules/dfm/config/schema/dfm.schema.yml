@@ -1,0 +1,147 @@
+# Dfm settings
+dfm.settings:
+  type: config_object
+  label: 'Dfm settings'
+  mapping:
+    roles_profiles:
+      type: sequence
+      label: 'Role-profile assignments'
+      sequence: 
+        - type: sequence
+          sequence:
+            - type: string
+    merge_folders:
+      type: boolean
+      label: 'Merge folders from multiple profiles'
+    abs_urls:
+      type: boolean
+      label: 'Enable absolute URLs'
+    textareas:
+      type: string
+      label: 'Integrated textareas'
+
+# Dfm Profile entity
+dfm.profile.*:
+  type: config_entity
+  label: 'Dfm Profile'
+  mapping:
+    id:
+      type: string
+      label: 'ID'
+    label:
+      type: label
+      label: 'Name'
+    description:
+      type: label
+      label: 'Description'
+    conf:
+      type: sequence
+      label: 'Configuration'
+      sequence:
+        - type: dfm.profile_conf.[%key]
+
+# Profile configuration options
+dfm.profile_conf.uploadExtensions:
+  type: string
+  label: 'Allowed file extensions'
+
+dfm.profile_conf.uploadMaxSize:
+  type: float
+  label: 'Maximum upload size'
+
+dfm.profile_conf.uploadQuota:
+  type: float
+  label: 'Disk quota'
+
+dfm.profile_conf.imgMaxDim:
+  type: string
+  label: 'Maximum image dimensions'
+
+dfm.profile_conf.searchOn:
+  type: boolean
+  label: 'Enable file searching'
+
+dfm.profile_conf.searchLimit:
+  type: integer
+  label: 'Search result limit'
+
+dfm.profile_conf.thumbStyle:
+  type: string
+  label: 'Thumbnail style'
+
+dfm.profile_conf.chrootJail:
+  type: boolean
+  label: 'Enable chroot jail'
+  
+dfm.profile_conf.ignoreFileUsage:
+  type: boolean
+  label: 'Ignore file usage'
+
+dfm.profile_conf.imgCopy:
+  type: boolean
+  label: 'Enable image copy'
+
+dfm.profile_conf.imgUpscale:
+  type: boolean
+  label: 'Enable image upscaling'
+
+dfm.profile_conf.uploadNoScale:
+  type: boolean
+  label: 'Disable auto-scale'
+
+dfm.profile_conf.imgExtensions:
+  type: string
+  label: 'Image extensions'
+
+dfm.profile_conf.fixBodyOnMove:
+  type: boolean
+  label: 'Fix urls in body fields on file move'
+
+
+# Sub type: Permissions
+dmf_perms:
+  type: sequence
+  label: 'Permissions'
+  sequence:
+    - type: boolean
+
+# Sub type: Subfolder configuration(recursive)
+dfm_subdirconf:
+  type: mapping
+  label: 'Subfolder configuration'
+  mapping:
+    inherit:
+      type: boolean
+      label: 'Inherit from parent'
+    perms:
+      type: dmf_perms
+      label: 'Permissions'
+    subdirConf: 
+      type: dfm_subdirconf
+      label: 'Subfolder configuration'
+
+dfm.profile_conf.dirConf:
+  type: sequence
+  label: 'Folder configuration'
+  sequence:
+    - type: mapping
+      label: 'Folder'
+      mapping:
+        dirname:
+          type: string
+          label: 'Folder name'
+        perms:
+          type: dmf_perms
+          label: 'Permissions'
+        subdirConf:
+          type: dfm_subdirconf
+          label: 'Subfolder configuration'
+
+# File field settings
+field.widget.third_party.dfm:
+  type: mapping
+  label: 'Dfm field widget settings'
+  mapping:
+    enabled:
+      type: boolean
+      label: 'Dfm enabled'

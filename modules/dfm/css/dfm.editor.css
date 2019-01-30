@@ -1,0 +1,42 @@
+.bue .bue-button--dfm_image:before,
+.bue .bue-button--dfm_link:before,
+.cke_button__dfm_image_icon:before,
+.cke_button__dfm_link_icon:before,
+.dfm-textarea-widget .insert-image:before,
+.dfm-textarea-widget .insert-link:before {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url(images/image.png) no-repeat 50% 50%;
+}
+.bue .bue-button--dfm_link:before,
+.cke_button__dfm_link_icon:before,
+.dfm-textarea-widget .insert-link:before {
+  background-image: url(images/file.png);
+}
+.dfm-textarea-widget {
+  font-size: 0.9em;
+}
+.dfm-textarea-widget a {
+  margin-left: 10px;
+}
+.dfm-textarea-widget a:first-child {
+  margin-left: 0;
+}
+.dfm-textarea-widget a:before {
+  margin-right: 3px;
+  vertical-align: middle;
+}
+.dfm-url-button {
+  display: inline-block;
+  margin: 1px 0;
+}
+.dfm-url-button:before {
+  content: '';
+  float: left;
+  width: 16px;
+  height: 16px;
+  margin-right: 2px;
+  background: url(images/browse.png) no-repeat 50% 50%;
+}

@@ -1,0 +1,5 @@
+dfm.admin:
+  title: 'Drupella File Manager'
+  description: 'Configure Drupella File Manager.'
+  route_name: dfm.admin
+  parent: system.admin_config_media

@@ -1,0 +1,5 @@
+dfm.profile_add:
+  route_name: dfm.profile_add
+  title: 'Add configuration profile'
+  appears_on:
+    - dfm.admin

@@ -1,0 +1,38 @@
+/* Profile list */
+.dfm-profile-list {
+  margin-bottom: 2.5em;
+}
+
+/* Settings form */
+.dfm-settings-form th > a {
+  display: inline;
+}
+.dfm-settings-form th > a:after {
+  display: none;
+}
+
+/* Folder counter */
+.dfm-profile-form {
+  counter-reset: folder;
+}
+.folder-container > .form-type-textfield:before {
+  counter-increment: folder;
+  content: counter(folder) ". ";
+}
+
+/* Indent permissions */
+.folder-container > .folder-permissions {
+  margin-left: 1.5em;
+}
+
+/* Align permission checkboxes */
+.permission-group .form-type-checkbox {
+  float: left;
+  min-width: 13em;
+}
+
+/* Number fields */
+.dfm-profile-form .form-number,
+#edit-conf-imgmaxdim {
+  width: 8em;
+}

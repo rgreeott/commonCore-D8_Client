@@ -1,0 +1,103 @@
+8.x-1.13
+
+* Added ability to fix file urls in body fields on file rename/move.
+
+
+8.x-1.12
+
+* Allowed SVG files to be used as image source in editor integrations.
+* Added API documentation.
+* Converted to short array syntax.
+* Fixed the description of merge_folders setting.
+* Removed deprecated Drupal::url()
+* Added a DFM warning to the upload checkbox of ckeditor image plugin.
+* Issue #2852815 by TheodorosPloumis: DFM library cannot find library version from Core CKeditor
+
+
+8.x-1.11
+
+* Issue #2852815: DFM library cannot find library version from Core CKeditor
+
+
+8.x-1.10
+
+* Made role-profile assignment respect role weights.
+
+
+8.x-1.9
+
+* Fixed #file_value_callbacks defined by element_info not being added to the element if it already has dynamically defined ones.
+* Added date and site token examples to folder description.
+
+
+8.x-1.8
+
+* Always give user #1 admin profile.
+
+
+8.x-1.7
+
+* Removed @file docblock from namespaced class files.
+* Added classic image and link plugins for CKEditor.
+
+
+8.x-1.6
+
+* Removed fielfield button which is not compatible with file.js auto triggering form submission on file input change.
+
+
+8.x-1.5
+
+* Issue #2724071: Fixed filesize usage in DfmDrupal::validateOverwrite()
+* Added SQLite compatibility to directory moving/renaming.
+* Removed deprecated urlInfo()
+* Removed deprecated entityManager()
+* Renamed dfm_textarea_pre_render() to Dfm::preRenderTextarea()
+* Added request event subscriber to override image derivatives config for dfm thumbnails.
+
+
+8.x-1.4
+
+* Fixed input focus in Firefox for wysiwyg integration.
+* Update alt field when src is populated in image input integration.
+* Made ckeditor link button use the selected image/text.
+* Renamed accessFileUri() to checkFileUri()
+* Renamed accessFilePaths() to checkFilePaths()
+
+
+8.x-1.3
+
+* Added integration for link and image(upload disabled) dialogs.
+* Set better library dependency for CKEditor plugin. https://www.drupal.org/node/2682851
+
+
+8.x-1.2
+
+* Removed unnecessary namespace inclusions.
+
+
+8.x-1.1
+
+* Fixed absolute URLs setting not being updated.
+* Added the schema definition for file field settings.
+* Set schema type of dfm.settings to config_object for language support.
+* Changed module category to Media
+* Removed deprecated SafeMarkup
+* Removed deprecated entity_load functions.
+* Removed deprecated drupal_realpath()
+* Removed deprecated DRUPAL_ANONYMOUS_RID
+* Removed deprecated db_ functions.
+* Import D7 profiles on install.
+* Removed deprecated !placeholder.
+* Implemented hook_requirements() to add a warning about anon/auth administrative access.
+* Set initial directory for file fields.
+* Made imgExtensions configurable. S3 users can now disable image handling.
+* Replaced id usage with data-drupal-selector for file field integration.
+* Support device-width viewport.
+* Redesigned the permissions form.
+* Fixed entity form validate.
+* Set custom realpath function.
+* Added download permissions.
+* Added ability to merge folders from multiple profiles.
+
+

@@ -1,0 +1,19 @@
+# Member profile
+id: member
+label: 'Member profile'
+description: 'Configuration profile for site members'
+conf:
+  uploadExtensions: 'jpg png gif'
+  uploadMaxSize: 2
+  uploadQuota: 20
+  imgMaxDim: '800x800'
+  searchOn: true
+  searchLimit: 100
+  dirConf:
+    - 
+      dirname: 'users/user[user:uid]'
+      perms:
+        listFiles: true
+        uploadFiles: true
+        deleteFiles: true
+langcode: en

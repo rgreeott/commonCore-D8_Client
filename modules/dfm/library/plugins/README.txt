@@ -1,0 +1,1 @@
+Put file manager plugins into this directory

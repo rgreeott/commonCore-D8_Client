@@ -1,0 +1,5 @@
+services:
+  dfm_event_subscriber:
+    class: Drupal\dfm\EventSubscriber\DfmSubscriber
+    tags:
+      - {name: event_subscriber}

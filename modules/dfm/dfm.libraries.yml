@@ -1,0 +1,52 @@
+drupal.dfm.admin:
+  version: VERSION
+  css:
+    component:
+      css/dfm.admin.css: {}
+
+drupal.dfm.filefield:
+  version: VERSION
+  js:
+    js/dfm.filefield.js: {}
+  css:
+    component:
+      css/dfm.filefield.css: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
+
+drupal.dfm.editor:
+  version: VERSION
+  css:
+    component:
+      css/dfm.editor.css: {}
+  js:
+    js/dfm.editor.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
+
+drupal.dfm.textarea:
+  version: VERSION
+  js:
+    js/dfm.textarea.js: {}
+  dependencies:
+    - dfm/drupal.dfm.editor
+
+drupal.dfm.bueditor:
+  version: VERSION
+  js:
+    js/dfm.bueditor.js: {}
+  dependencies:
+    - bueditor/drupal.bueditor
+    - dfm/drupal.dfm.editor
+
+drupal.dfm.ckeditor:
+  version: VERSION
+  js:
+    js/dfm.ckeditor.js: {}
+  dependencies:
+    - ckeditor/drupal.ckeditor
+    - dfm/drupal.dfm.editor

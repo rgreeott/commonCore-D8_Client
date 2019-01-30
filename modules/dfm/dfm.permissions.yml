@@ -1,0 +1,3 @@
+administer dfm:
+  title: 'Administer Drupella File Manager'
+  restrict access: true

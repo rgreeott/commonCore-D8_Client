@@ -1,0 +1,1 @@
+Put file manager themes into this directory

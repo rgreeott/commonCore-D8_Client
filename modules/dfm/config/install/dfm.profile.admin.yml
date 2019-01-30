@@ -1,0 +1,19 @@
+# Administrator profile
+id: admin
+label: 'Administrator profile'
+description: 'Configuration profile for site administrators'
+conf:
+  uploadExtensions: '*'
+  uploadMaxSize: 0
+  uploadQuota: 0
+  imgMaxDim: ''
+  searchOn: true
+  searchLimit: 0
+  dirConf:
+    - 
+      dirname: '.'
+      perms:
+        all: true
+      subdirConf:
+        inherit: true
+langcode: en

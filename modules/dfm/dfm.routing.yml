@@ -1,0 +1,48 @@
+dfm.page:
+  path: '/dfm/{scheme}'
+  defaults:
+    _controller: '\Drupal\dfm\Controller\DfmController::page'
+    _title: 'File Manager'
+    scheme: null
+  requirements:
+    _custom_access: '\Drupal\dfm\Controller\DfmController::checkAccess'
+
+dfm.admin:
+  path: '/admin/config/media/dfm'
+  defaults:
+    _controller: '\Drupal\dfm\Controller\DfmController::adminOverview'
+    _title: 'Drupella File Manager'
+  requirements:
+    _permission: 'administer dfm'
+
+dfm.profile_add:
+  path: '/admin/config/media/dfm/add-profile'
+  defaults:
+    _entity_form: 'dfm_profile.add'
+    _title: 'Add configuration profile'
+  requirements:
+    _entity_create_access: 'dfm_profile'
+
+entity.dfm_profile.edit_form:
+  path: '/admin/config/media/dfm/{dfm_profile}'
+  defaults:
+    _entity_form: 'dfm_profile.edit'
+    _title: 'Edit configuration profile'
+  requirements:
+    _entity_access: 'dfm_profile.update'
+
+entity.dfm_profile.delete_form:
+  path: '/admin/config/media/dfm/{dfm_profile}/delete'
+  defaults:
+    _entity_form: 'dfm_profile.delete'
+    _title: 'Delete configuration profile'
+  requirements:
+    _entity_access: 'dfm_profile.delete'
+
+entity.dfm_profile.duplicate_form:
+  path: '/admin/config/media/dfm/{dfm_profile}/duplicate'
+  defaults:
+    _entity_form: 'dfm_profile.duplicate'
+    _title: 'Duplicate configuration profile'
+  requirements:
+    _entity_create_access: 'dfm_profile'

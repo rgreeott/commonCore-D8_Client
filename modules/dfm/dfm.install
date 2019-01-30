@@ -1,0 +1,70 @@
+<?php
+
+/**
+ * @file
+ * Manages installation and update of dfm module.
+ */
+
+use Drupal\Core\StreamWrapper\StreamWrapperInterface;
+use Drupal\user\RoleInterface;
+use Drupal\Core\Database\Database;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_install().
+ */
+function dfm_install() {
+  // Assign admin profile to administrators.
+  $admin_roles = \Drupal::entityQuery('user_role')->condition('is_admin', TRUE)->execute();
+  if ($admin_roles) {
+    $config = \Drupal::configFactory()->getEditable('dfm.settings');
+    $roles_profiles = $config->get('roles_profiles', []);
+    $wrappers = \Drupal::service('stream_wrapper_manager')->getWrappers(StreamWrapperInterface::WRITE_VISIBLE);
+    foreach ($wrappers as $scheme => $info) {
+      foreach ($admin_roles as $role) {
+        $roles_profiles[$role][$scheme] = 'admin';
+      }
+    }
+    $config->set('roles_profiles', $roles_profiles);
+    $config->save(TRUE);
+  }
+  // Import D7 profiles.
+  $db = Database::getConnection();
+  $table = 'dfm_profiles';
+  if ($db->schema()->tableExists($table)) {
+    $result = $db->query('SELECT * FROM {' . $table . '}');
+    $storage = \Drupal::entityTypeManager()->getStorage('dfm_profile');
+    foreach ($result as $profile) {
+      $profile->conf = unserialize($profile->conf);
+      $profile->conf['dirConf'] = $profile->conf['dirConfRaw'];
+      unset($profile->conf['dirConfRaw']);
+      $new_profile = $storage->create([
+        'id' => 'imported_' . $profile->pid,
+        'label' => '[Imported] ' . $profile->name,
+        'conf' => $profile->conf,
+      ]);
+      $new_profile->save();
+    }
+    $db->schema()->dropTable($table);
+  }
+}
+
+/**
+ * Implementation of hook_requirements().
+ */
+ function dfm_requirements($phase) {
+  $requirements = [];
+  if ($phase === 'runtime') {
+    $roles = user_roles(FALSE, 'administer dfm');
+    $roles = array_intersect_key($roles, [RoleInterface::ANONYMOUS_ID => '', RoleInterface::AUTHENTICATED_ID => '']);
+    if ($roles) {
+      $roles = array_map(function($role) {return $role->label();}, $roles);
+      $requirements['dfm'] = [
+        'title' => t('Drupella File Manager'),
+        'value' => t('Roles (%roles) having %permission permission is a security risk. Please consider <a href=":url">revoking the permission</a>.', ['%roles' => implode(', ', $roles), '%permission' => t('Administer Drupella File Manager'), ':url' => Url::fromRoute('user.admin_permissions', [], ['fragment' => 'module-dfm'])->toString()]),
+        'severity' => REQUIREMENT_ERROR,
+      ];
+    }
+  }
+  return $requirements;
+}
