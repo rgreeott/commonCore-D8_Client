@@ -1,7 +1,7 @@
-name: Gavis Core
+name: RAMCO Core
 type: theme
 description: 'A flexible, recolorable theme with many regions and a responsive, mobile-first layout.'
-package: gaviasthemes
+package: RAMCOthemes
 base theme: false
 libraries:
   - gavias_emon/global-styling
