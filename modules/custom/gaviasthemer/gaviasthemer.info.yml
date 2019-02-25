@@ -1,10 +1,10 @@
-name: RAMCO/Gavias Themer
+name: Gavias Themer
 type: module
-description: RAMCO/Gavias Themer module.
+description: Gavias Themer module.
 # core: 8.x
-package: RAMCO/Gavias
+package: Gavias
 # Information added by Drupal.org packaging script on 2015-08-14
 version: '8.x-1.0'
 core: '8.x'
-project: 'RAMCO/Gaviasthemer'
+project: 'Gaviasthemer'
 datestamp: 1439548441
