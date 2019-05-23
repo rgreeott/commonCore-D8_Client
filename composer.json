@@ -14,7 +14,8 @@
         "drupal/flysystem": "1.x",
         "league/flysystem-aws-s3-v3": "^1.0",
         "spatie/flysystem-dropbox": "^1.0",
-        "league/flysystem-cached-adapter": "^1.0"
+        "league/flysystem-cached-adapter": "^1.0",
+        "twig/twig": "1.37.1"
     },
     "replace": {
         "drupal/core": "^8.6"
