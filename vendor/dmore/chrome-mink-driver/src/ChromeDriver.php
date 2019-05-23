@@ -86,7 +86,7 @@ class ChromeDriver extends CoreDriver
 
         if (isset($this->options['validateCertificate']) && $this->options['validateCertificate'] === false) {
             $this->page->send('Security.enable');
-            $this->page->send('Security.setOverrideCertificateErrors', ['override' => true]);
+            $this->page->send('Security.setIgnoreCertificateErrors', ['ignore' => true]);
         }
     }
 
@@ -388,6 +388,20 @@ JS;
     }
 
     /**
+     * Returns all cookies.
+     *
+     * @return array
+     *
+     * @throws DriverException                  When the operation cannot be done
+     */
+    public function getCookies()
+    {
+        $result = $this->page->send('Network.getCookies');
+
+        return $result['cookies'];
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function getStatusCode()
@@ -664,7 +678,7 @@ JS;
         for (i = 0; i < l; i++) {
             var field = fields.item(i);
             if (field.form === element.form) {
-                if (field.value === expected_value) {
+                if (field.value == expected_value) {
                     field.checked = true;
                     field.click();
                 } else {
@@ -1195,7 +1209,6 @@ JS;
         element.focus();
         var event = document.createEvent("Events");
         event.initEvent("$event", true, true);
-        event.key = $char;
         event.keyCode = $char;
         event.which = $char;
         event.ctrlKey = {$options['ctrlKey']};
@@ -1288,6 +1301,10 @@ JS;
                     if ($value['type'] === 'number' && !array_key_exists('value', $value) &&
                         array_key_exists('unserializableValue', $value) && $value['unserializableValue'] === '-0') {
                         $return[$property['name']] = 0;
+                    }
+                    elseif ($value['type'] === 'function' && !array_key_exists('value', $value) &&
+                        array_key_exists('description', $value)) {
+                        $return[$property['name']] = $value['description'];
                     } elseif (!array_key_exists('value', $value)) {
                         throw new DriverException('Property value not set');
                     } else {
@@ -1347,18 +1364,18 @@ JS;
      * @param bool   $printBackground
      * @param int    $scale
      * @param float  $paperWidth
-     * @param int    $paperHeight
-     * @param int    $marginTop
-     * @param int    $marginBottom
-     * @param int    $marginLeft
-     * @param int    $marginRight
+     * @param float  $paperHeight
+     * @param float  $marginTop
+     * @param float  $marginBottom
+     * @param float  $marginLeft
+     * @param float  $marginRight
      * @param string $pageRanges
      * @param bool   $ignoreInvalidPageRanges
      * @param string $headerTemplate
      * @param string $footerTemplate
      * @throws \Exception
      */
-    public function printToPDF($filename, $landscape = false, $displayHeaderFooter = false, $printBackground = false, $scale = 1, $paperWidth = 8.5, $paperHeight = 11, $marginTop = 1, $marginBottom = 1, $marginLeft = 1, $marginRight = 1, $pageRanges = '', $ignoreInvalidPageRanges = false, $headerTemplate = '', $footerTemplate = '')
+    public function printToPDF($filename, $landscape = false, $displayHeaderFooter = false, $printBackground = false, $scale = 1, $paperWidth = 8.5, $paperHeight = 11.0, $marginTop = 1.0, $marginBottom = 1.0, $marginLeft = 1.0, $marginRight = 1.0, $pageRanges = '', $ignoreInvalidPageRanges = false, $headerTemplate = '', $footerTemplate = '')
     {
         if (false === $this->browser->isHeadless()) {
             throw new \RuntimeException('Page.printToPDF is only available in headless mode.');

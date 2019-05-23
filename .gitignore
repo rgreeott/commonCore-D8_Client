@@ -3,6 +3,9 @@
 sites/*/private
 #files/*
 
+# Ignore Composer directory
+vendor/composer
+
 # Avoid accidental modification of pantheon.upstream.yml in sites
 # created from this upstream
 pantheon.upstream.yml
